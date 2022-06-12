@@ -4,10 +4,14 @@ import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 import Form from './Form';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter';
+import Loader from 'shared/shared-components/loader/Loader';
 
 import { getContacts, getLoading, getError } from 'redux/contacts/selector';
-
-import * as operations from 'redux/contacts/operations';
+import {
+  getUserContacts,
+  addContact,
+  removeContact,
+} from 'redux/contacts/operations';
 
 import styles from './myNumbers.module.css';
 
@@ -23,29 +27,20 @@ const MyNumbers = () => {
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    dispatch(operations.getContacts());
+    dispatch(getUserContacts());
   }, [dispatch]);
 
   const addContacts = useCallback(
-    data => {
-      return dispatch(operations.addContact(data));
-    },
+    data => dispatch(addContact(data)),
     [dispatch]
   );
 
   const deleteNumber = useCallback(
-    id => {
-      return dispatch(operations.removeContact(id));
-    },
+    id => dispatch(removeContact(id)),
     [dispatch]
   );
 
-  const changeFilter = useCallback(
-    e => {
-      setFilter(e.target.value);
-    },
-    [setFilter]
-  );
+  const changeFilter = useCallback(e => setFilter(e.target.value), [setFilter]);
 
   const getFilteredContacts = () => {
     if (!filter) {
@@ -71,7 +66,7 @@ const MyNumbers = () => {
 
       {error && <div className={styles.error}>{error}</div>}
 
-      {isLoading && <div className={styles.loading}>Loading...</div>}
+      {isLoading && <Loader />}
 
       <ContactList
         contacts={getFilteredContacts()}

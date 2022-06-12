@@ -1,23 +1,19 @@
-import MyNumbers from "./MyNumbers";
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
+import Routes from './Route';
+
+import { getCurrentUser } from 'redux/user/user-operations';
 
 export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, [dispatch]);
   return (
-    <div
-      style={{
-        
-        display: 'flex',
-        justifyContent: 'center',
-        textAlign: 'center',
-        flexDirection:'column',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-        padding:'20px'
-      }}
-    >
-      <MyNumbers/>
+    <div>
+      <Routes />
     </div>
   );
 };
-
-
