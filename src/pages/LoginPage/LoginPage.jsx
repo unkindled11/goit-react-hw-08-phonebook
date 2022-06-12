@@ -26,7 +26,7 @@ const LoginPage = () => {
   );
 
   return (
-    <Section title="You may Login hear if you already got an account">
+    <Section title="If you already had account please use it">
       <Login onSubmit={loginUser} />
     </Section>
   );

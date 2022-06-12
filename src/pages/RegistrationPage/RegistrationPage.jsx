@@ -27,7 +27,7 @@ const RegisterPage = () => {
   );
 
   return (
-    <Section title="Enter your details to SignUp">
+    <Section title="Enter your details to Sign Up">
       <RegisterForm onSubmit={loginUser} />
     </Section>
   );

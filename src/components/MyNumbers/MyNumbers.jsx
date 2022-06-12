@@ -57,7 +57,6 @@ const MyNumbers = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Phonebook</h1>
       <Form onSubmit={addContacts} />
 
       <h2 className={styles.title}>Contacts</h2>

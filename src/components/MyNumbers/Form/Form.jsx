@@ -1,5 +1,7 @@
 import { useState } from 'react';
+
 import PropTypes from 'prop-types';
+
 import styles from './form.module.css';
 
 const Form = ({ onSubmit }) => {
@@ -10,12 +12,12 @@ const Form = ({ onSubmit }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    onSubmit({ ...state });
+    onSubmit(state);
     setState({ name: '', number: '' });
   };
 
-  const handleChange = e => {
-    const { name, value } = e.currentTarget;
+  const handleChange = ({ target }) => {
+    const { name, value } = target;
     setState({
       ...state,
       [name]: value,
